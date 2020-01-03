@@ -1,0 +1,36 @@
+1/ 创建一个新项目
+    yarn init
+
+2/ 添加一个依赖
+    yarn add [package]
+
+    yarn add [package] --dev
+    yarn add [package] --peer
+    yarn add [package] --optional
+
+    yarn add [package]@[version]
+    yarn add [package]@[tag]
+
+    yarn global add [package]
+
+3/ 升级依赖
+    yarn upgrade [package]
+    yarn upgrade [package]@[version]
+    yarn upgrade [package]@[tag]
+
+4/ 删除依赖
+    yarn remove [package]
+
+5/ dependencies  -> needed when running the code
+   devDependencies -> needed only when developing, not needed when running the code
+   peerDependencies -> 自己发布的包的依赖包
+
+6/ 安装 package.json 中的所有依赖
+    yarn = yarn install
+    yarn install --force 强制重新安装所有依赖
+
+7/ 发布 package
+   yarn publish
+
+
+
