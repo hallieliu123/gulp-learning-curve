@@ -1,6 +1,9 @@
     const {series,parallel,src,dest} = require('gulp');
     const {exec} = require('child_process');
     const {EventEmitter} = require('events');
+    const babel = require('gulp-babel');
+    const uglify = require('gulp-uglify');
+    const rename = require('gulp-rename');
 // 创建 task 和 导出 task
 // 1.公开任务 - 直接导出,被 gulp 命令执行
 // 2.私有任务 - 内部使用，通常结合 series 或 parallel 使用
@@ -87,14 +90,41 @@
 // 5. 返回 observable - can't test
 
 // 6. ** gulp 不在支持同步任务, 要使用以上 5 种方式编写任务， 或使用 async or await
+/*
     const fs = require('fs');
     async function test() {
         const fileBuffer = fs.readFileSync('package.json');
         console.log('fileBuffer',fileBuffer);
         await Promise.resolve('result');
     }
-    exports.default = test;
+    exports.default = test; */
 
+// 处理文件
+/* 
+    exports.default = function() {
+        return src('src/*.js')
+            .pipe(babel({
+                presets: ['@babel/env']
+            }))
+            .pipe(dest('output/'));
+    }
+     */
+// 处理文件 - 分段输出
+    module.exports.default = function() {
+        return src('src/1.js')
+            .pipe(babel({
+                presets: ['@babel/env']
+            }))
+            .pipe(src('src/2.js'))
+            .pipe(uglify())
+            .pipe(rename({extname: '.min.js'}))
+            .pipe(dest('output/'))
+    }
+// Glob 详解
     
+
+
+
+
 
 
